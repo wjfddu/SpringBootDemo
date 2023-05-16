@@ -1,5 +1,17 @@
 # SpringBootDemo
 
+jdk版本 1.8.0_371  
+maven版本：apache-maven-3.6.3  
+  settings.xml配置
+    <mirrors>  
+      <mirror>  
+        <id>nexus-aliyun</id>  
+        <mirrorOf>central</mirrorOf>  
+        <name>Nexus aliyun</name>  
+        <url>http://maven.aliyun.com/nexus/content/groups/public</url>  
+      </mirror>  
+    </mirrors>
+
 一、模块说明
 
     common           公共包
