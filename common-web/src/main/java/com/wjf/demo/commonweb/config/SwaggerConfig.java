@@ -1,4 +1,4 @@
-package com.wjf.demo.common.config;
+package com.wjf.demo.commonweb.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
