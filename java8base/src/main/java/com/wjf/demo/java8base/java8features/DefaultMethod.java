@@ -1,7 +1,15 @@
 package com.wjf.demo.java8base.java8features;
 
+@FunctionalInterface
 public interface DefaultMethod {
-    default void m(){
-        System.out.println("DefaultMethod...");
+
+    void A();
+
+//    void B();
+
+    boolean equals(Object obj);
+
+    default void defaultMethod(){
+        System.out.println("defaultMethod...");
     }
 }

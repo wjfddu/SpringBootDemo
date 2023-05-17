@@ -1,9 +1,6 @@
 package com.wjf.demo.java8base.java8features;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -40,6 +37,15 @@ public class Test {
 //        Predicate<Integer> p = a -> a>1;
 //        System.out.println(p.test(1));
 
+        //        List<String> names2 = new ArrayList<String>();
+//        names2.add("Google ");
+//        names2.add("W3CSchool ");
+//        names2.add("Taobao ");
+//        names2.add("Baidu ");
+//        names2.add("Sina ");
+//
+//        Collections.sort(names2, (s1, s2) -> s1.compareTo(s2));
+//        System.out.println(names2);
 
         // 方法引用
 //        Consumer<String> c = System.out::println;
@@ -54,10 +60,5 @@ public class Test {
 
 //        Function<Integer,Integer[]> f1 = (num) ->new Integer[num];
 //        Function<Integer, Integer[]> f2 = Integer[]::new;
-
-//         Stream.of()
-
-        Stream.generate(Math::random).limit(10).forEach(System.out::println);
-
     }
 }
