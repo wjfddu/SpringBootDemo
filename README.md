@@ -14,11 +14,13 @@
 
 ## 一、模块说明
 
-    common           公共包
-
     java8base        java基础练习
 
-    web              普通web模块，最原始的web工程
+    common           公共包
+
+    common-web       web模块基础依赖
+
+    web              普通web模块
 
     rabbitmq         rabbitmq整合与使用
 
