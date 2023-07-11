@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.joining;
+
 /**
  *
  * 流的来源。 可以是集合，数组，I/O channel，产生器generator 等
@@ -15,13 +17,15 @@ import java.util.stream.Stream;
  *
  */
 public class StreamTest {
+
     public static void main(String[] args) {
 //        filterTest();
 //        forEachTest();
 //        mapTest();
 //        sortedTest();
-        parallelStreamTest();
+//        parallelStreamTest();
 //        collectorsTest();
+        collectorsTest2();
 //        statisticsTest();
     }
 
@@ -78,8 +82,14 @@ public class StreamTest {
         List<String> strings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
         List<String> filtered = strings.stream().filter(string -> string != null && !string.isEmpty()).collect(Collectors.toList());
         System.out.println("筛选列表: " + filtered);
-        String mergedString = strings.stream().filter(string -> string != null && !string.isEmpty()).collect(Collectors.joining(", "));
+        String mergedString = strings.stream().filter(string -> string != null && !string.isEmpty()).collect(joining(", "));
         System.out.println("合并字符串: " + mergedString);
+    }
+
+    public static void collectorsTest2(){
+        List<String> strings = Arrays.asList("abc", "d", "efg", "hi", "jkl");
+        String collect = strings.stream().collect(joining(",", " ORDER BY ", " ASC"));
+        System.out.println(collect);
     }
 
 
