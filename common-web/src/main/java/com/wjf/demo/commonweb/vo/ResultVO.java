@@ -3,11 +3,13 @@ package com.wjf.demo.commonweb.vo;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
+import java.io.Serializable;
+
 /**
  * 返回数据
  */
 @Data
-public class ResultVO<T> {
+public class ResultVO<T> implements Serializable {
 
 	private Integer code;
 	private String message;
@@ -36,7 +38,7 @@ public class ResultVO<T> {
 	public static ResultVO error(String message) {
 		return new ResultVO(HttpStatus.INTERNAL_SERVER_ERROR.value(), message);
 	}
-	
+
 	public static ResultVO error(Integer code, String message) {
 		return new ResultVO(code, message);
 	}
