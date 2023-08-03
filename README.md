@@ -27,3 +27,10 @@
 ## 二、踩过的坑  
   1. springboot 2.7.11跟swagger 2.9.2不匹配，需要降低Spring Boot 版本到2.6.x以下版本，或者升级swagger到3.x  
   2. web模块使用common-web模块的swagger，需要将包扫描路径往上提一层（配置包扫描路径为"com.wjf.demo"），不然swagger无法生效
+
+## 三、知识点笔记
+    1.springmvc接口响应实现流程
+    WebMvcAutoConfiguration -> @Bean RequestMappingHandlerAdapter 
+        WebMvcConfigurationSupport.requestMappingHandlerAdapter() -> adapter.setMessageConverters(getMessageConverters()); // HttpMessageConverter消息转换器
+        RequestMappingHandlerAdapter.afterPropertiesSet() -> getDefaultReturnValueHandlers() -> new RequestResponseBodyMethodProcessor() -- 处理@ResponseBody修饰的Controller或Controller里的方法
+        RequestResponseBodyMethodProcessor.handleReturnValue -> writeWithMessageConverters -- 转换消息
