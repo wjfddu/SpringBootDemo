@@ -17,7 +17,7 @@
 	<description>java8base</description>
 
 	<dependencies>
-		<dependency>
+		<!--<dependency>
 			<groupId>net.tongsuo</groupId>
 			<artifactId>tongsuo-openjdk</artifactId>
 			<version>1.0.0</version>
@@ -27,11 +27,11 @@
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
 			<version>1.69</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	
-	<build>
+<!--	<build>
 		<extensions>
 			<extension>
 				<groupId>kr.motd.maven</groupId>
@@ -39,6 +39,6 @@
 				<version>1.4.1.Final</version>
 			</extension>
 		</extensions>
-	</build>
+	</build>-->
 
 </project>
