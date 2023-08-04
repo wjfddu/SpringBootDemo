@@ -17,8 +17,28 @@
 	<description>java8base</description>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>net.tongsuo</groupId>
+			<artifactId>tongsuo-openjdk</artifactId>
+			<version>1.0.0</version>
+			<classifier>${os.detected.classifier}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.69</version>
+		</dependency>
 	</dependencies>
 
+	
+	<build>
+		<extensions>
+			<extension>
+				<groupId>kr.motd.maven</groupId>
+				<artifactId>os-maven-plugin</artifactId>
+				<version>1.4.1.Final</version>
+			</extension>
+		</extensions>
+	</build>
 
 </project>
