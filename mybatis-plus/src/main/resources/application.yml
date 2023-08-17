@@ -9,10 +9,9 @@ spring:
     username: root
     password: 123456
 
-mybatis:
-  type-aliases-package: com.wjf.demo.mybatisplus.entity
-  mapper-locations: classpath:mybatis/mapper/*.xml
-
 mybatis-plus:
+  type-aliases-package: com.wjf.demo.mybatisplus.entity
+  mapper-locations: classpath:mybatisplus/mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

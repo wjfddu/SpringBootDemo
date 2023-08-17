@@ -24,7 +24,10 @@
     web              普通web模块
 
     rabbitmq         rabbitmq整合与使用
-    
+
+    mybatis          整合mybatis
+
+    mybatis-plus     整合mybatis-plus
 
 ## 二、踩过的坑  
   1. springboot 2.7.11跟swagger 2.9.2不匹配，需要降低Spring Boot 版本到2.6.x以下版本，或者升级swagger到3.x  

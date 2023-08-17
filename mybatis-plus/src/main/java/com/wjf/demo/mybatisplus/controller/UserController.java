@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping("/list")
     public List<User> queryUserList(){
-        List<User> userList = userMapper.selectList(null);
+        List<User> userList = userMapper.selectAll();
 
         for(User user:userList){
             System.out.println(user);
