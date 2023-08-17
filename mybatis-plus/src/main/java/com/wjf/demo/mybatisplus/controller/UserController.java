@@ -1,8 +1,7 @@
 package com.wjf.demo.mybatisplus.controller;
 
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.wjf.demo.mybatisplus.entity.User;
-import com.wjf.demo.mybatisplus.mapper.UserMapper;
+import com.wjf.demo.mybatisplus.model.resp.UserResp;
+import com.wjf.demo.mybatisplus.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,17 +14,12 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @GetMapping("/list")
-    public List<User> queryUserList(){
-        List<User> userList = userMapper.selectAll();
-
-        for(User user:userList){
-            System.out.println(user);
-        }
-
-        return userList;
+    public List<UserResp> queryUserList(){
+        List<UserResp> userResps = userService.listUser();
+        return userResps;
     }
 
 }

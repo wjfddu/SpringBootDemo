@@ -5,7 +5,7 @@
 
 <mapper namespace="com.wjf.demo.mybatisplus.mapper.UserMapper">
 
-    <select id="selectAll" resultType="User">
+    <select id="selectAll" resultType="UserEntity">
         select * from user
     </select>
 
