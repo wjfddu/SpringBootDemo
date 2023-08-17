@@ -24,10 +24,15 @@
 		<module>common-web</module>
 		<module>web</module>
 		<module>rabbitmq</module>
+		<module>mybatis</module>
+		<module>mybatis-plus</module>
 	</modules>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<swagger.version>2.9.2</swagger.version>
 	</properties>
 
