@@ -3,16 +3,16 @@
 
 # 一、开发规范
 
-## 应用分层
+## I 应用分层
 #### 请求处理层（Web层，也即Controller层）：主要是对访问控制进行转发，各类基本参数校验，或者不复用的业务简单处理等。
 #### 业务逻辑层（Service层）：相对具体的业务逻辑服务层。
 #### 通用逻辑层（Manager层），它有如下特征： 
-#####  1）对第三方平台封装的层，预处理返回结果及转化异常信息，适配上层接口。
-#####  2）对 Service 层通用能力的下沉，如缓存方案、中间件通用处理。
-#####  3）与 DAO 层交互，对多个 DAO 的组合复用。
+#####  1.对第三方平台封装的层，预处理返回结果及转化异常信息，适配上层接口。
+#####  2.对 Service 层通用能力的下沉，如缓存方案、中间件通用处理。
+#####  3.与 DAO 层交互，对多个 DAO 的组合复用。
 #### 数据访问层（DAO层）：与底层 MySQL、Oracle、Hbase、OceanBase等进行数据交互。
 
-## 目录介绍
+## II 目录介绍
 #### |_annotation：放置项目自定义注解
 #### |_aspect：放置切面代码
 #### |_config：放置配置类
@@ -31,18 +31,29 @@
 #### |__impl：存放业务逻辑具体实现
 #### |_util：放置工具类和辅助代码
 
-## 一些注意事项
-#### 1、Contorller层参数传递建议不要使用HashMap，建议使用数据模型定义
 
-#### 2、Controller层里可以做参数校验、异常抛出等操作，但建议不要放太多业务逻辑，业务逻辑尽量放到Service层代码中去做
+## III 强制要求
+#### 1.枚举类名带上 Enum 后缀，常量类名带上 Consts 后缀
+#### 2.浮点数的精度和等值比较需要格外留意
 
-#### 3、Service层做实际业务逻辑，可以按照功能模块做好定义和区分，相互可以调用
 
-#### 4、功能模块Service之间引用时，建议不要渗透到DAO层（或者mapper层），基于Service层进行调用和复用比较合理
+## IV 阿里Java开发手册（黄山版）部分规范解释
+#### 四.8 【强制】任何货币金额，均以最小货币单位且为整型类型进行存储。
+####    比如说人民币的最小单位是分，那假设一个商品的价格是1元钱，那就存到数据库的 price 字段，字段类型是 int 或者 bigint，值为 100，单位是分，也就是100分。
+  
 
-#### 5、业务逻辑层Service和数据库DAO层的操作对象不要混用。Controller层的数据对象不要直接渗透到DAO层（或者mapper层）；
-#### 同理数据表实体对象Entity也不要直接传到Controller层进行输出或展示。
+## V 一些建议
+#### 1.Contorller层参数传递建议不要使用HashMap，建议使用数据模型定义
+
+#### 2.Controller层里可以做参数校验、异常抛出等操作，但建议不要放太多业务逻辑，业务逻辑尽量放到Service层代码中去做
+
+#### 3.Service层做实际业务逻辑，可以按照功能模块做好定义和区分，相互可以调用
+
+#### 4.功能模块Service之间引用时，建议不要渗透到DAO层（或者mapper层），基于Service层进行调用和复用比较合理
+
+#### 5.业务逻辑层Service和数据库DAO层的操作对象不要混用。Controller层的数据对象不要直接渗透到DAO层（或者mapper层）；同理数据表实体对象Entity也不要直接传到Controller层进行输出或展示。
+
+#### 6.通过序列化实现深拷贝:通过clone方法实现深拷贝是比较麻烦的一件事情，这里推荐大家可以通过序列化、反序列化的方式实现深拷贝。我们可以直接使用commons-lang3包的序列化、反序列工具类。
 
 # 二、踩过的坑
-####  1.resources下的目录mybatisplus/mapper一定要检查目录层级，一旦出现目录名为mybatisplus.mapper的失误， 
-####  产生报错：Invalid bound statement (not found): com.wjf.demo.mybatisplus.mapper.UserMapper.selectAll
+####  1.resources下的目录mybatisplus/mapper一定要检查目录层级，一旦出现目录名为mybatisplus.mapper的失误，产生报错：Invalid bound statement (not found): com.wjf.demo.mybatisplus.mapper.UserMapper.selectAll
