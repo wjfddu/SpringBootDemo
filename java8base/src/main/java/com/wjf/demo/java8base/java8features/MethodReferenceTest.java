@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
+// 来源：https://baijiahao.baidu.com/s?id=1649928629451917925&wfr=spider&for=pc
+
 /**
  * 在我们使用 Lambda 表达式的时候，如果“->”的右边要执行的表达式只是调用一个类已有的方法，那么就可以用「方法引用」来替代 Lambda 表达式。
  *
