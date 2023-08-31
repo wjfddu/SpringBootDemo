@@ -5,10 +5,12 @@
 
     <!-- 指定日志文件路径（与当前程序jar包同一目录下） -->
     <property name="LOG_HOME" value="logs" />
+    <property name="CONSOLE_ENCODER_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) --- [%15.15(%thread)] %cyan(%-40.40(%logger{40})) : %msg%n" />
+    <property name="FILE_ENCODER_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%15.15(%thread)] %-40.40(%logger{40}) : %msg%n" />
 
     <!-- appender是configuration的子节点，是负责写日志的组件。 -->
     <!-- ConsoleAppender：把日志输出到控制台 -->
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <!-- 默认情况下，每个日志事件都会立即刷新到基础输出流。 这种默认方法更安全，因为如果应用程序在没有正确关闭appender的情况下退出，则日志事件不会丢失。
          但是，为了显着增加日志记录吞吐量，您可能希望将immediateFlush属性设置为false -->
         <!--<immediateFlush>true</immediateFlush>-->
@@ -20,7 +22,7 @@
             <!-- %msg：日志打印详情 -->
             <!-- %n:换行符 -->
             <!-- %highlight():转换说明符以粗体红色显示其级别为ERROR的事件，红色为WARN，BLUE为INFO，以及其他级别的默认颜色。 -->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) --- [%15.15(%thread)] %cyan(%-40.40(%logger{40})) : %msg%n</pattern>
+            <pattern>${CONSOLE_ENCODER_PATTERN}</pattern>
             <!-- 控制台也要使用UTF-8，不要使用GBK，否则会中文乱码 -->
             <charset>UTF-8</charset>
         </encoder>
@@ -30,7 +32,7 @@
     <!-- RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
     <!-- 以下的大概意思是：1.先按日期存日志，日期变了，将前一天的日志文件名重命名为XXX%日期%索引，新的日志仍然是info.log -->
     <!--               2.如果日期没有发生变化，但是当前日志的文件大小超过10MB时，对当前日志进行分割 重命名-->
-    <appender name="info_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- filter 为日志过滤器。执行一个过滤器会有返回一个枚举值，即 DENY，NEUTRAL，ACCEPT 其中之一。 -->
         <!-- LevelFilter 级别过滤器，根据日志级别进行过滤。如果日志级别等于配置级别，过滤器会根据onMath 和 onMismatch接收或拒绝日志 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -72,14 +74,14 @@
         <!--编码器-->
         <encoder>
             <!-- pattern节点，用来设置日志的输入格式 ps:日志文件中没有设置颜色,否则颜色部分会有ESC[0:39em等乱码-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%15.15(%thread)] %-40.40(%logger{40}) : %msg%n</pattern>
+            <pattern>${FILE_ENCODER_PATTERN}</pattern>
             <!-- 记录日志的编码:此处设置字符集 - -->
             <charset>UTF-8</charset>
         </encoder>
     </appender>
 
     <!-- error 日志-->
-    <appender name="error_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- ThresholdFilter 临界值过滤器，过滤掉低于指定临界值的日志。当日志级别等于或高于临界值时，过滤器返回NEUTRAL；当日志级别低于临界值时，日志会被拒绝。 -->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level> <!-- 低于ERROR级别的日志（debug,info）将被拒绝，等于或者高于ERROR的级别将返回NEUTRAL -->
@@ -105,7 +107,7 @@
         <!--编码器-->
         <encoder>
             <!-- pattern节点，用来设置日志的输入格式 ps:日志文件中没有设置颜色,否则颜色部分会有ESC[0:39em等乱码-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%15.15(%thread)] %-40.40(%logger{40}) : %msg%n</pattern>
+            <pattern>${FILE_ENCODER_PATTERN}</pattern>
             <!-- 记录日志的编码:此处设置字符集 - -->
             <charset>UTF-8</charset>
         </encoder>
@@ -113,9 +115,9 @@
 
     <!-- 利用logback输出mybatis的sql日志，注意：如果不加 additivity="false" 则此logger会将输出转发到自身以及祖先的logger中，就会出现日志文件中sql重复打印-->
     <logger name="com.wjf.demo.mybatisplus.mapper" level="DEBUG" additivity="false">
-        <appender-ref ref="console"/>
-        <appender-ref ref="info_log" />
-        <appender-ref ref="error_log" />
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="ERROR_LOG" />
     </logger>
 
     <!-- logger level级别 级别按以下顺序排序：TRACE < DEBUG < INFO < WARN < ERROR -->
@@ -125,10 +127,10 @@
         记录请求的级别只有高于或等于其 logger 的有效级别时被称为被启用，否则，称为被禁用。假设记录请求级别为 p，其 logger 的有效级别为 q，只有则当 p>=q 时，该请求才会被执行。
     -->
     <!-- configuration中最多允许一个root，别的logger如果没有设置级别则从父级别root继承 -->
-    <root level="info">
-        <appender-ref ref="console" />
-        <appender-ref ref="info_log" />
-        <appender-ref ref="error_log" />
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="ERROR_LOG" />
     </root>
 
 </configuration>
