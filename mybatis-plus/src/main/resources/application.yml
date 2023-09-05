@@ -10,6 +10,16 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
+  mvc:
+    pathmatch:
+      # Springfox使用的路径匹配是基于AntPathMatcher的，而Spring Boot 2.6.X使用的是PathPatternMatcher
+      # 所以需要配置此参数
+      matching-strategy: ant_path_matcher
+  jackson:
+    # 格式化全局时间字段 年-月-天 时：分：秒
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 指定时间区域类型 东8区时区 既北京时间
+    time-zone: GMT+8
 
 mybatis-plus:
   type-aliases-package: com.wjf.demo.mybatisplus.model.entity

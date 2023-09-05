@@ -29,7 +29,9 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request, ServerHttpResponse response) {
 
-        if(body == null) return ResultVO.ok();
+        if(body == null){
+            return ResultVO.ok();
+        }
 
         // 提供一定的灵活度，如果body已经被包装了，就不进行包装
         if (body instanceof ResultVO) {

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.12.RELEASE</version>
+		<version>2.7.15</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -40,7 +40,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- 管理swagger的版本 -->
-			<dependency>
+			<!--<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger2</artifactId>
 				<version>${swagger.version}</version>
@@ -49,7 +49,7 @@
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger-ui</artifactId>
 				<version>${swagger.version}</version>
-			</dependency>
+			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 
@@ -60,11 +60,8 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.4</version>
 		</dependency>
-<!--	<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>-->
-
 	</dependencies>
+
+
 
 </project>

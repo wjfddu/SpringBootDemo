@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalException {
 
-    private static final Logger logger = LoggerFactory.getLogger(GlobalException.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalException.class);
 
     @ExceptionHandler(Exception.class)
     public ResultVO handleException(Exception e){
         String message = e.getCause() == null ? e.getMessage() : e.getCause().getMessage();
-        logger.error("全局异常捕获：{}", e);
+        LOGGER.error("全局异常捕获：{}", e);
         return ResultVO.error(message);
     }
 
