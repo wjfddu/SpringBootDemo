@@ -5,8 +5,13 @@
 
 <mapper namespace="com.wjf.demo.mybatis.mapper.UserMapper">
 
+
     <select id="selectAll" resultType="User">
         select * from user
     </select>
+
+    <insert id="addUser">
+        insert into user(name) values (#{name})
+    </insert>
 
 </mapper>

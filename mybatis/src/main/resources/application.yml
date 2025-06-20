@@ -8,9 +8,15 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
+  main:
+    allow-circular-references: true
 
 mybatis:
+  # 配置实体类的扫描路径
   type-aliases-package: com.wjf.demo.mybatis.entity
+  # 配置 mybatis 的xml文件的扫描路径
   mapper-locations: classpath:mapper/*.xml
   configuration:
+    # 开启驼峰命名转换
+    map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
