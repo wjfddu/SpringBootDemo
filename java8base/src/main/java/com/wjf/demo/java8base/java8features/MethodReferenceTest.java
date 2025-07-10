@@ -1,9 +1,6 @@
 package com.wjf.demo.java8base.java8features;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 // 来源：https://baijiahao.baidu.com/s?id=1649928629451917925&wfr=spider&for=pc
@@ -26,6 +23,11 @@ public class MethodReferenceTest {
     }
 
     private class MyClass {
+        public MyClass() {
+        }
+        public MyClass(Integer integer) {
+        }
+
         public int compare(Integer o1, Integer o2){
             return o1.compareTo(o2);
         }
@@ -135,5 +137,10 @@ public class MethodReferenceTest {
 
         // 使用「引用构造方法」的方式，我们可以简写成这样：
         function = ArrayList::new;
+    }
+
+    public void m5(){
+        Function<Integer, MyClass> function;
+        function = MyClass::new;
     }
 }
