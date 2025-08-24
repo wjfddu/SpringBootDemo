@@ -15,10 +15,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TopicRabbitConfig {
     //绑定键
-    public final static String people = "topic.people";
     public final static String man = "topic.man";
+    public final static String people = "topic.people";
     public final static String woman = "topic.woman";
-
+    public final static String oneWord = "topic.*";
+    public final static String zeroOrMultipleWord = "topic.#";
 
     @Bean
     public Queue firstQueue() {
@@ -32,7 +33,17 @@ public class TopicRabbitConfig {
 
     @Bean
     public Queue thirdQueue() {
-        return new Queue("topic*");
+        return new Queue(woman);
+    }
+
+    @Bean
+    public Queue fourthQueue() {
+        return new Queue(oneWord);
+    }
+
+    @Bean
+    public Queue fifthQueue() {
+        return new Queue(zeroOrMultipleWord);
     }
 
     @Bean
@@ -52,12 +63,22 @@ public class TopicRabbitConfig {
     // 这样只要是消息携带的路由键是以topic.开头,都会分发到该队列
     @Bean
     Binding bindingExchangeMessage2() {
-        return BindingBuilder.bind(secondQueue()).to(exchange()).with("topic.#");
+        return BindingBuilder.bind(secondQueue()).to(exchange()).with(people);
     }
 
     @Bean
     Binding bindingExchangeMessage3() {
-        return BindingBuilder.bind(thirdQueue()).to(exchange()).with("topic.*");
+        return BindingBuilder.bind(thirdQueue()).to(exchange()).with(woman);
+    }
+
+    @Bean
+    Binding bindingExchangeMessage4() {
+        return BindingBuilder.bind(fourthQueue()).to(exchange()).with(oneWord);
+    }
+
+    @Bean
+    Binding bindingExchangeMessage5() {
+        return BindingBuilder.bind(fifthQueue()).to(exchange()).with(zeroOrMultipleWord);
     }
 
 }

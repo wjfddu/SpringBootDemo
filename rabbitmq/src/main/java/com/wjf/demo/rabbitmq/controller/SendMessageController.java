@@ -42,15 +42,14 @@ public class SendMessageController {
     }
 
     @ApiOperation("发送消息到主题交换机")
-    @GetMapping("/sendTopicMessage1")
-    public String sendTopicMessage1(@RequestParam("routingKey") String routingKey, boolean isMan) {
+    @GetMapping("/sendTopicMessage")
+    public String sendTopicMessage1(@RequestParam("routingKey") String routingKey) {
         String messageId = String.valueOf(UUID.randomUUID());
-//        String messageData = "message: M A N ";
+        String messageData = "hello, this is topic exchange";
         String createTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         Map<String, Object> manMap = new HashMap<>();
         manMap.put("messageId", messageId);
-//        manMap.put("messageData", messageData);
-        manMap.put("messageData", isMan ? "兄弟们好" : "姐妹们好");
+        manMap.put("messageData", messageData);
         manMap.put("createTime", createTime);
         rabbitTemplate.convertAndSend("topicExchange", routingKey, manMap);
         return "ok";
